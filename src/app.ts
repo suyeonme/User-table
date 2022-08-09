@@ -1,14 +1,12 @@
 import express from 'express';
-import dotenv from 'dotenv';
-import routes from '@src/routes';
-
-dotenv.config({ path: 'config/.env' });
+import routes from '@/routes/index';
+import config from '@/config';
 
 const startServer = async (): Promise<void> => {
   const app = express();
 
-  app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}`);
+  app.listen(config.PORT, () => {
+    console.log(`Server is running on port ${config.PORT}`);
 
     app.use('/', routes);
   });

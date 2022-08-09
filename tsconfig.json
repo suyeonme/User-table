@@ -8,14 +8,11 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@routes/*": ["src/routes/*"]
+      "@/*": ["src/*"],
+      "@/routes/*": ["src/routes/*"],
+      "@/config": ["./config/index"]
     }
-    // "baseUrl": "./src",
-    // "paths": {
-    //   "@routes/*": ["./src/routes"]
-    // },
   },
-  "include": ["src/**/*"],
+  // "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
