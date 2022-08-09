@@ -1,9 +1,8 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
+import userController from '@/controllers/user';
 
 const router = express.Router();
 
-router.get('/list', (req: Request, res: Response, next: NextFunction) => {
-  res.send('user list');
-});
+router.get('/list', userController.getUserList);
 
 export default router;
