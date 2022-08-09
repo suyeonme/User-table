@@ -10,7 +10,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@/routes/*": ["src/routes/*"],
-      "@/config": ["src/config/index"],
+      "@/config": ["src/config/env.ts"],
       "@/loaders": ["src/loaders/index"],
       "@/controllers": ["src/controllers/*"]
     }
