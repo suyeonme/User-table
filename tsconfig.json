@@ -2,8 +2,19 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "outDir": "dist",
-    "strict": true
+    "esModuleInterop": true,
+    "outDir": "./bin",
+    // "rootDir": "src",
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@routes/*": ["src/routes/*"]
+    }
+    // "baseUrl": "./src",
+    // "paths": {
+    //   "@routes/*": ["./src/routes"]
+    // },
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
