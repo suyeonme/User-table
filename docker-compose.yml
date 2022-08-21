@@ -6,11 +6,13 @@ services:
     environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: user
     ports:
       - '3306:3306'
     volumes:
-      - db:/var/lib/mysql
-      # - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      # 데이터 베이스 초기화(init.sql)
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      # - db:/var/lib/mysql
 volumes:
   db:
     driver: local
