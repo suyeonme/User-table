@@ -1,8 +1,8 @@
 import { Application } from 'express';
 import expressLoader from './express';
-import mySqlLoader from './mysql';
+import { init } from './mysql';
 
 export default async ({ app }: { app: Application }) => {
-  const mysqlConnection = await mySqlLoader();
-  await expressLoader({ app });
+  const mysqlConnection = await init();
+  const expressApp = await expressLoader({ app });
 };

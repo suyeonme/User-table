@@ -10,9 +10,11 @@
     "paths": {
       "@/*": ["src/*"],
       "@/routes/*": ["src/routes/*"],
-      "@/config": ["src/config/env.ts"],
+      "@/services/*": ["src/services/*"],
+      "@/controllers/*": ["src/controllers/*"],
+      "@/db/*": ["src/database/*"],
+      "@/config": ["src/config/config.ts"],
       "@/loaders": ["src/loaders/index"],
-      "@/controllers": ["src/controllers/*"]
     }
   },
   // "include": ["src/**/*"],
