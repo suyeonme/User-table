@@ -1,9 +1,9 @@
-import { createPool, Pool } from 'mysql';
+import { createPool, Pool } from 'mysql2';
 import config from '@/config';
 
 let pool: Pool;
 
-export const init = () => {
+export const init = (): void => {
   try {
     pool = createPool({
       user: config.DB_USER,
@@ -11,6 +11,7 @@ export const init = () => {
       database: config.DB_NAME,
       connectionLimit: Number(config.DB_CONNECTION_LIMIT),
       host: config.DB_HOST,
+      insecureAuth : true
     });
 
     console.debug('MySql Adapter Pool generated successfully.');
@@ -20,17 +21,17 @@ export const init = () => {
   }
 };
 
-export const execute = <T>(
+export const getConnection = (
   query: string,
-  params: string[] | Object
-): Promise<T> => {
+  params?: string[] | Object
+) => {
   try {
     if (!pool)
       throw new Error(
         'Pool was not created. Ensure pool is created when running the app.'
       );
 
-    return new Promise<T>((resolve, reject) => {
+    return new Promise ((resolve, reject) => {
       pool.query(query, params, (error, results) => {
         if (error) reject(error);
         else resolve(results);

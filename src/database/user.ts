@@ -1,15 +1,24 @@
-import loaders from '@/loaders';
-// import mySqlLoader from '@/loaders/mysql';
+import { getConnection } from '@/loaders/mysql';
+import { UserQueries } from '@/db/sql/user';
+import { UserInterface } from '@/types/user';
 
-// const connection = mySqlLoader();
+export const getUserList = async () => {
+  return getConnection(UserQueries.GetUsers);
+};
 
-class User {
-  static async getUserList() {
-    // connection.query('SHOW TABLES LIKE users', (error, results) => {
-    //   if (error) return console.log(error);
-    //   console.log(results);
-    // });
-  }
-}
+export const addUser = async (user: UserInterface) => {
+  const { name, company, position } = user;
+  return getConnection(UserQueries.AddUser, [name, company, position]);
+};
 
-export default User;
+export const deleteUser = async (id: string) => {
+  return getConnection(UserQueries.DeleteUserById, id);
+};
+
+export const getUserById = async (id: string) => {
+  return getConnection(UserQueries.GetUserById, id);
+};
+
+export const updateUser = async (user: UserInterface) => {
+  return getConnection(UserQueries.UpdateUserById, user);
+};

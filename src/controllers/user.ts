@@ -1,16 +1,46 @@
 import { Request, Response, NextFunction } from 'express';
-import UserService from '@/services/user';
+import * as UserService from '@/services/user';
 
 const getUserList = async (req: Request, res: Response, next: NextFunction) => {
-  // 테이블이 존재하는지 확인
-  // 존재하지 않는다면 테이블 생성
-  // service.Func
-  // const { user, company } = await UserService.Signup(userDTO);
-  // return res.json({ user, company });
-  
   try {
     const userList = await UserService.getUserList();
-    return res.status(200).send({ list: userList });
+    return res.status(200).send({ data: userList });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const addUser = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await UserService.addUser(req.body);
+    return res.status(200).send({ msg: 'success', user });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await UserService.deleteUser(req.body.id);
+    return res.status(200).send({ msg: 'success' });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const getUserById = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await UserService.getUserById(req.body.id);
+    return res.status(200).send({ user });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const updateUser = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await UserService.updateUser(req.body.user);
+    return res.status(200).send({ msg: 'success' });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -18,4 +48,8 @@ const getUserList = async (req: Request, res: Response, next: NextFunction) => {
 
 export default {
   getUserList,
+  getUserById,
+  addUser,
+  updateUser,
+  deleteUser,
 };
