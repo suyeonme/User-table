@@ -16,6 +16,7 @@
       "@/types/*": ["src/types/*"],
       "@/config": ["src/config/config.ts"],
       "@/loaders": ["src/loaders/index"],
+      "@/utils": ["src/utils/index"],
     }
   },
   // "include": ["src/**/*"],

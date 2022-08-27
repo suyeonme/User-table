@@ -2,27 +2,41 @@ import * as User from '@/db/user';
 import { UserInterface } from '@/types/user';
 
 export const getUserList = async () => {
-  return User.getUserList();
+  try {
+    return User.getUserList();
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const addUser = async (user: UserInterface) => {
   try {
     return User.addUser(user);
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
 export const deleteUser = async (id: string) => {
-  return User.deleteUser(id);
+  try {
+    return User.deleteUser(id);
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const getUserById = async (id: string) => {
-  return User.getUserById(id);
+  try {
+    return User.getUserById(id);
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const updateUserById = async (user: UserInterface) => {
-  return User.updateUserById(user);
+  try {
+    return User.updateUserById(user);
+  } catch (error) {
+    throw error;
+  }
 };
-
-
