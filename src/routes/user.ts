@@ -5,5 +5,8 @@ const router = express.Router();
 
 router.get('/list', userController.getUserList);
 router.post('/add', userController.addUser);
+router.post('/delete', userController.deleteUser);
+router.get('/get', userController.getUserById);
+router.post('/update', userController.updateUserById);
 
 export default router;

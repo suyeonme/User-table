@@ -19,6 +19,7 @@ export const getUserById = async (id: string) => {
   return getConnection(UserQueries.GetUserById, id);
 };
 
-export const updateUser = async (user: UserInterface) => {
-  return getConnection(UserQueries.UpdateUserById, user);
+export const updateUserById = async (user: UserInterface) => {
+  const { name, company, position, id } = user;
+  return getConnection(UserQueries.UpdateUserById, [name, company, position, id]);
 };

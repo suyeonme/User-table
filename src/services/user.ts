@@ -21,8 +21,8 @@ export const getUserById = async (id: string) => {
   return User.getUserById(id);
 };
 
-export const updateUser = async (user: UserInterface) => {
-  return User.updateUser(user);
+export const updateUserById = async (user: UserInterface) => {
+  return User.updateUserById(user);
 };
 
 

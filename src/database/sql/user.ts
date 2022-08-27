@@ -4,35 +4,24 @@ export const UserQueries = {
   `,
 
   AddUser: `
-  INSERT INTO User(name, company, position) VALUES(?, ?, ?)
-`,
+    INSERT INTO User(name, company, position)
+    // OUTPUT INSERTED.*
+    VALUES(?, ?, ?)
+  `,
 
   DeleteUserById: `
-UPDATE teams_system.teams
-SET isActive = false
-WHERE
-  id = ?
-`,
+    DELETE FROM User
+    WHERE id = ?
+  `,
 
   GetUserById: `
-  SELECT
-    id,
-      name,
-      league,
-    (case when t.isActive is not null
-      then 'true'
-      else 'false'
-    end) as 'isActive'
-  FROM teams_system.teams as t
-  WHERE
-    id = ?
+    SELECT * FROM User
+    WHERE id = ?
   `,
 
   UpdateUserById: `
-  UPDATE teams_system.teams
-  SET name = ?,
-      league = ?
-  WHERE
-    id = ?
+    UPDATE User 
+    SET name = ?,company = ?, position = ?
+    WHERE id = ?;
   `,
 };
