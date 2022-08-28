@@ -14,7 +14,5 @@ export default async ({ app }: { app: express.Application }) => {
   app.use(bodyParser.json());
 
   app.use('/', routes);
-
-  console.log('Express is intialized');
   return app;
 };

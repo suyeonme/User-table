@@ -5,7 +5,6 @@ export const UserQueries = {
 
   AddUser: `
     INSERT INTO User(name, company, position)
-    // OUTPUT INSERTED.*
     VALUES(?, ?, ?)
   `,
 
