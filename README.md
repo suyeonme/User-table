@@ -3,11 +3,10 @@
 ## TODO
 - [x] Simple CRUD with SQL
 - [x] Validation and error handling
-- [x] Caching
-- [ ] Logging
-- [ ] Test code
+- [x] Caching with Redis
+- [ ] Logger
+- [ ] Testing
 - [ ] Build a docker image
-- [ ] Check middlewares, useful libraries
 - [ ] API Docs, Swagger
 
 ## MORE
