@@ -3,7 +3,7 @@
 ## TODO
 - [x] Simple CRUD with SQL
 - [x] Validation and error handling
-- [ ] Caching
+- [x] Caching
 - [ ] Logging
 - [ ] Test code
 - [ ] Build a docker image
@@ -15,3 +15,5 @@
 
 ## Troubleshooting
  - "OUTPUT" statement syntax error => mySQL doesn't support "output/returning" statement. So use "SELECT LAST_INSERT_ID()" instaed.
+
+

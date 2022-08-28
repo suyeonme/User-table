@@ -13,6 +13,16 @@ services:
       # 데이터 베이스 초기화(init.sql)
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       # - db:/var/lib/mysql
+  redis: 
+    image: redis:alpine
+    command: redis-server --port 6379
+    container_name: redis_db
+    hostname: redis_db
+    labels:
+      - "name=redis"
+      - "mode=standalone"
+    ports:
+      - 6379:6379
 volumes:
   db:
     driver: local
