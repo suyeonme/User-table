@@ -5,3 +5,9 @@ export interface UserInterface {
   position: 'user' | 'admin'
 }
 
+export const enum UserKey {
+  ID = 'id',
+  NAME = 'name',
+  COMPANY = 'company',
+  POSITION = 'position'
+}

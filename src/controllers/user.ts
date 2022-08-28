@@ -1,11 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import * as UserService from '@/services/user';
-import {
-  isValidReqBody,
-  getErrorResponse,
-  Status,
-  ErrorMessage,
-} from '@/utils';
+import { getErrorResponse } from '@/utils';
+import { Status } from '@/types/common';
 
 const getUserList = async (req: Request, res: Response) => {
   // * 파라미터에 이름을 넣으면, 해당 유저만 반환
@@ -21,16 +17,6 @@ const getUserList = async (req: Request, res: Response) => {
 };
 
 const addUser = async (req: Request, res: Response) => {
-  const requiredKeys = ['name', 'company', 'position'];
-  if (!isValidReqBody(requiredKeys, req.body)) {
-    return res.status(400).send({
-      status: Status.FAILED,
-      data: {
-        error: `${ErrorMessage.REQUIRED_KEY_IS_MISSING}${requiredKeys}`,
-      },
-    });
-  }
-
   try {
     const user = await UserService.addUser(req.body);
     return res.status(201).send({ status: Status.OK, data: user });
@@ -42,15 +28,6 @@ const addUser = async (req: Request, res: Response) => {
 };
 
 const deleteUserById = async (req: Request, res: Response) => {
-  if (!req.body?.id) {
-    return res.status(400).send({
-      status: Status.FAILED,
-      data: {
-        error: ErrorMessage.USER_ID_IS_REQUIRED,
-      },
-    });
-  }
-
   try {
     await UserService.deleteUserById(req.body.id);
     return res.status(200).send({ status: Status.OK, data: [] });
@@ -62,16 +39,7 @@ const deleteUserById = async (req: Request, res: Response) => {
 };
 
 const getUserById = async (req: Request, res: Response) => {
-  const userId = req.query?.id as string;
-
-  if (!userId) {
-    return res.status(400).send({
-      status: Status.FAILED,
-      data: {
-        error: ErrorMessage.USER_ID_IS_REQUIRED,
-      },
-    });
-  }
+  const userId = req.query.id as string;
 
   try {
     const user = await UserService.getUserById(userId);
@@ -84,16 +52,6 @@ const getUserById = async (req: Request, res: Response) => {
 };
 
 const updateUserById = async (req: Request, res: Response) => {
-  const requiredKeys = ['id', 'name', 'company', 'position'];
-  if (!isValidReqBody(requiredKeys, req.body)) {
-    return res.status(400).send({
-      status: Status.FAILED,
-      data: {
-        error: `${ErrorMessage.REQUIRED_KEY_IS_MISSING}${requiredKeys}`,
-      },
-    });
-  }
-
   try {
     const user = await UserService.updateUserById(req.body);
     return res.status(200).send({ status: Status.OK, data: user });

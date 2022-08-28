@@ -2,13 +2,16 @@
 
 ## TODO
 - [x] Simple CRUD with SQL
-- [ ] Validation and error handling (express-validator)
+- [x] Validation and error handling
+- [ ] Caching
 - [ ] Logging
 - [ ] Test code
 - [ ] Build a docker image
 - [ ] Check middlewares, useful libraries
+- [ ] API Docs, Swagger
+
+## MORE
 - [ ] pagination, filter
 
-## troubleshooting
- - [ ] OUTPUT syntax error
-
+## Troubleshooting
+ - "OUTPUT" statement syntax error => mySQL doesn't support "output/returning" statement. So use "SELECT LAST_INSERT_ID()" instaed.

@@ -46,7 +46,7 @@ export const getConnection = (
       );
 
     return new Promise((resolve, reject) => {
-      pool.query(query, params, (error, results: SqlResult) => {
+      pool.query(query, params, (error, results: SqlReturnType) => {
         if (error) reject(error);
         else resolve(results);
       });
