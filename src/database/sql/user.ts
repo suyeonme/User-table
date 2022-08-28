@@ -4,23 +4,19 @@ export const UserQueries = {
   `,
 
   AddUser: `
-    INSERT INTO User(name, company, position)
-    VALUES(?, ?, ?)
+    INSERT INTO User(name, company, position) VALUES(?, ?, ?);
+    SELECT * FROM User WHERE id = LAST_INSERT_ID();
   `,
 
   DeleteUserById: `
-    DELETE FROM User
-    WHERE id = ?
+    DELETE FROM User WHERE id = ?;
   `,
 
   GetUserById: `
-    SELECT * FROM User
-    WHERE id = ?
+    SELECT * FROM User WHERE id = ?;
   `,
 
   UpdateUserById: `
-    UPDATE User 
-    SET name = ?,company = ?, position = ?
-    WHERE id = ?;
+    UPDATE User SET name = ?,company = ?, position = ? WHERE id = ?;
   `,
 };

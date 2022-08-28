@@ -11,15 +11,17 @@ export const getUserList = async () => {
 
 export const addUser = async (user: UserInterface) => {
   try {
-    return User.addUser(user);
+    const result = await User.addUser(user);
+    const hasInsertedRow = Array.isArray(result) && result.length > 1;
+    return hasInsertedRow ? result[1] : result;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteUser = async (id: string) => {
+export const deleteUserById = async (id: string) => {
   try {
-    return User.deleteUser(id);
+    return User.deleteUserById(id);
   } catch (error) {
     throw error;
   }
@@ -34,8 +36,11 @@ export const getUserById = async (id: string) => {
 };
 
 export const updateUserById = async (user: UserInterface) => {
+  if (!user.id) return;
+
   try {
-    return User.updateUserById(user);
+    await User.updateUserById(user);
+    return User.getUserById(user.id);
   } catch (error) {
     throw error;
   }

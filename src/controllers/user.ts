@@ -1,6 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 import * as UserService from '@/services/user';
-import { isValidReqBody, getErrorResponse, Status, ErrorMessage } from '@/utils';
+import {
+  isValidReqBody,
+  getErrorResponse,
+  Status,
+  ErrorMessage,
+} from '@/utils';
 
 const getUserList = async (req: Request, res: Response) => {
   // * 파라미터에 이름을 넣으면, 해당 유저만 반환
@@ -16,8 +21,6 @@ const getUserList = async (req: Request, res: Response) => {
 };
 
 const addUser = async (req: Request, res: Response) => {
-    // * createAt 추가
-
   const requiredKeys = ['name', 'company', 'position'];
   if (!isValidReqBody(requiredKeys, req.body)) {
     return res.status(400).send({
@@ -38,7 +41,7 @@ const addUser = async (req: Request, res: Response) => {
   }
 };
 
-const deleteUser = async (req: Request, res: Response) => {
+const deleteUserById = async (req: Request, res: Response) => {
   if (!req.body?.id) {
     return res.status(400).send({
       status: Status.FAILED,
@@ -49,8 +52,8 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 
   try {
-    const user = await UserService.deleteUser(req.body.id);
-    return res.status(200).send({ status: Status.OK, data: user });
+    await UserService.deleteUserById(req.body.id);
+    return res.status(200).send({ status: Status.OK, data: [] });
   } catch (error) {
     if (error instanceof Error) {
       res.status(500).send(getErrorResponse(error));
@@ -72,7 +75,7 @@ const getUserById = async (req: Request, res: Response) => {
 
   try {
     const user = await UserService.getUserById(userId);
-    return res.status(200).send({ user });
+    return res.status(200).send({ status: Status.OK, data: user });
   } catch (error) {
     if (error instanceof Error) {
       res.status(500).send(getErrorResponse(error));
@@ -106,5 +109,5 @@ export default {
   getUserById,
   addUser,
   updateUserById,
-  deleteUser,
+  deleteUserById,
 };

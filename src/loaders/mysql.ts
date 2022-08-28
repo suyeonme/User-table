@@ -1,4 +1,10 @@
-import { createPool, Pool } from 'mysql2';
+import {
+  createPool,
+  Pool,
+  RowDataPacket,
+  OkPacket,
+  ResultSetHeader,
+} from 'mysql2';
 import config from '@/config';
 
 let pool: Pool;
@@ -11,7 +17,8 @@ export const init = (): void => {
       database: config.DB_NAME,
       connectionLimit: Number(config.DB_CONNECTION_LIMIT),
       host: config.DB_HOST,
-      insecureAuth : true
+      insecureAuth: true,
+      multipleStatements: true,
     });
 
     console.debug('MySql Adapter Pool generated successfully.');
@@ -21,18 +28,25 @@ export const init = (): void => {
   }
 };
 
+type SqlReturnType =
+  | RowDataPacket[][]
+  | RowDataPacket[]
+  | OkPacket
+  | OkPacket[]
+  | ResultSetHeader;
+
 export const getConnection = (
   query: string,
   params?: string[] | Object
-) => {
+): Promise<SqlReturnType> => {
   try {
     if (!pool)
       throw new Error(
         'Pool was not created. Ensure pool is created when running the app.'
       );
 
-    return new Promise ((resolve, reject) => {
-      pool.query(query, params, (error, results) => {
+    return new Promise((resolve, reject) => {
+      pool.query(query, params, (error, results: SqlResult) => {
         if (error) reject(error);
         else resolve(results);
       });

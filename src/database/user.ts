@@ -23,7 +23,7 @@ export const addUser = async (user: UserInterface) => {
   }
 };
 
-export const deleteUser = async (id: string) => {
+export const deleteUserById = async (id: string) => {
   try {
     return getConnection(UserQueries.DeleteUserById, id);
   } catch (error) {
