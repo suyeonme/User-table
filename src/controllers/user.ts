@@ -3,10 +3,10 @@ import * as UserService from '@/services/user';
 import { getErrorResponse } from '@/utils';
 import { Status } from '@/types/common';
 import { setCache } from '@/middlewares/redis';
+import { logger } from '@/config/winston';
 
 const getUserList = async (req: Request, res: Response) => {
   // * 파라미터에 이름을 넣으면, 해당 유저만 반환
-
   try {
     const users = await UserService.getUserList();
     await setCache(req.url, users);

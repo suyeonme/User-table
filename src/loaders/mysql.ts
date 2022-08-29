@@ -6,6 +6,7 @@ import {
   ResultSetHeader,
 } from 'mysql2';
 import config from '@/config';
+import { logger } from '@/config/winston';
 
 let pool: Pool;
 
@@ -20,10 +21,9 @@ export const init = (): void => {
       insecureAuth: true,
       multipleStatements: true,
     });
-
-    console.debug('MySql Adapter Pool generated successfully.');
+    logger.info(`MySql Adapter Pool generated successfully.`);
   } catch (error) {
-    console.error('[mysql.connector][init][Error]: ', error);
+    logger.error(`[mysql.connector][init][Error]: ${error}`);
     throw new Error('failed to initialized pool');
   }
 };
@@ -40,19 +40,23 @@ export const getConnection = (
   params?: string[] | Object
 ): Promise<SqlReturnType> => {
   try {
-    if (!pool)
-      throw new Error(
+    if (!pool) {
+      logger.error(
         'Pool was not created. Ensure pool is created when running the app.'
       );
+    }
 
     return new Promise((resolve, reject) => {
       pool.query(query, params, (error, results: SqlReturnType) => {
-        if (error) reject(error);
-        else resolve(results);
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results);
+        }
       });
     });
   } catch (error) {
-    console.error('[mysql.connector][execute][Error]: ', error);
+    logger.error(`failed to execute MySQL query: ${error}`);
     throw new Error('failed to execute MySQL query');
   }
 };
