@@ -66,9 +66,6 @@ const logger = winston.createLogger({
 
 // morgan wiston 설정
 const stream = {
-  // write: (message: string) => {
-  //   logger.http(message);
-  // },
   write: (message: string) => {
     logger.info(message);
   },
