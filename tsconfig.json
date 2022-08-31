@@ -14,7 +14,7 @@
       "@/controllers/*": ["src/controllers/*"],
       "@/db/*": ["src/database/*"],
       "@/types/*": ["src/types/*"],
-      "@/config": ["src/config/config.ts"],
+      "@/config/*": ["src/config/*"],
       "@/loaders": ["src/loaders/index"],
       "@/utils/*": ["src/utils/*"],
       "@/middlewares/*": ["src/middlewares/*"],

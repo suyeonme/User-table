@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
 import routes from '@/routes/index';
-import config from '@/config';
+import config from '@/config/config';
 import { stream } from '@/config/winston';
 
 const isProduction = config.NODE_ENV === 'production';

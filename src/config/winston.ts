@@ -1,6 +1,6 @@
 import winston from 'winston';
 import winstonDaily from 'winston-daily-rotate-file';
-import config from '@/config';
+import config from '@/config/config';
 
 const { combine, timestamp, printf, colorize } = winston.format;
 

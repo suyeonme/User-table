@@ -1,6 +1,6 @@
 import express from 'express';
 import loaders from '@/loaders';
-import config from '@/config';
+import config from '@/config/config';
 import { logger } from '@/config/winston';
 
 const startServer = async (): Promise<void> => {
