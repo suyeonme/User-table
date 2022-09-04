@@ -5,14 +5,14 @@ import {
   OkPacket,
   ResultSetHeader,
 } from 'mysql2';
-import config from '@/config';
+import config from '@/config/config';
 import { logger } from '@/config/winston';
 
 let pool: Pool;
 
-export const init = (): void => {
+export const initConnectionPool = async (): Promise<Pool | undefined> => {
   try {
-    pool = createPool({
+    pool = await createPool({
       user: config.DB_USER,
       password: config.DB_PASSWORD,
       database: config.DB_NAME,
@@ -21,7 +21,16 @@ export const init = (): void => {
       insecureAuth: true,
       multipleStatements: true,
     });
+    
+    if (!pool) {
+      logger.error(
+        'Pool was not created. Ensure pool is created when running the app.'
+      );
+      return;
+    }
+
     logger.info(`MySql Adapter Pool generated successfully.`);
+    return pool;
   } catch (error) {
     logger.error(`[mysql.connector][init][Error]: ${error}`);
     throw new Error('failed to initialized pool');
@@ -33,7 +42,8 @@ type SqlReturnType =
   | RowDataPacket[]
   | OkPacket
   | OkPacket[]
-  | ResultSetHeader;
+  | ResultSetHeader
+  | any;
 
 export const getConnection = (
   query: string,

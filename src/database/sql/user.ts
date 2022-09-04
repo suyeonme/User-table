@@ -17,6 +17,6 @@ export const UserQueries = {
   `,
 
   UpdateUserById: `
-    UPDATE User SET name = ?,company = ?, position = ? WHERE id = ?;
+    UPDATE User SET name = ?, company = ?, position = ? WHERE id = ?;
   `,
 };

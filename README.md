@@ -6,7 +6,7 @@
 - [x] Validation and error handling
 - [x] Caching with Redis
 - [x] Logger
-- [ ] Testing
+- [x] Testing
 - [ ] Build a docker image
 - [ ] API Docs, Swagger
 
@@ -17,5 +17,4 @@
  - "OUTPUT" statement syntax error => MySQL doesn't support "output/returning" statement. So use "SELECT LAST_INSERT_ID()" instaed.
 
  ## Getting started
-
 
