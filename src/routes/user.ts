@@ -12,11 +12,15 @@ router.post(
   validation.deleteUserById,
   userController.deleteUserById
 );
-router.get('/get', validation.getUserById, getCache, userController.getUserById);
+router.get(
+  '/get',
+  validation.getUserById,
+  getCache,
+  userController.getUserById
+);
 router.post(
   '/update',
   validation.updateUserById,
-  getCache,
   userController.updateUserById
 );
 

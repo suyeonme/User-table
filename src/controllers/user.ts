@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import * as UserService from '@/services/user';
-import { getErrorResponse } from '@/utils';
+import { getErrorResponse } from '@/utils/index';
 import { Status } from '@/types/common';
 import { setCache } from '@/middlewares/redis';
 
@@ -56,7 +56,6 @@ const getUserById = async (req: Request, res: Response) => {
 const updateUserById = async (req: Request, res: Response) => {
   try {
     const user = await UserService.updateUserById(req.body);
-    await setCache(req.url, user);
     return res.status(200).send({ status: Status.OK, data: user });
   } catch (error) {
     if (error instanceof Error) {
