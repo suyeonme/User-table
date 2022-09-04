@@ -1,5 +1,5 @@
 # User-table
-> Simple APIs for CRUD of user table. I focus on to understand the overall flow of Server.
+> Simple APIs for CRUD of user table. I focus on to understand the overall flow of Server side.
  ## Getting started
  ### 1. Clone repository
 ```git clone https://github.com/suyeonme/User-table.git```
@@ -33,17 +33,25 @@ mysql -u root -p
 ```
 
 ### 5. Run Express server
-```npm run dev```
+```
+# Run Express server
+npm run dev
 
+# Run test suite
+npm run test
+
+# API Docs with Swagger
+# http://localhost:3000/api-docs
+```
 ---
 ## TODO
-- [x] Simple CRUD with SQL
+- [x] Simple CRUD APIs with MySQL
 - [x] Validation and error handling
 - [x] Caching with Redis
 - [x] Logger
 - [x] Testing
+- [x] API Docs, Swagger
 - [ ] Build a docker image
-- [ ] API Docs, Swagger
 
 ## MORE
 - [ ] pagination, filter

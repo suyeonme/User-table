@@ -3,8 +3,8 @@
     "target": "es5",
     "module": "commonjs",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "outDir": "./bin",
-    // "rootDir": "src",
     "strict": true,
     "baseUrl": ".",
     "paths": {
@@ -18,8 +18,9 @@
       "@/loaders": ["src/loaders/index"],
       "@/utils/*": ["src/utils/*"],
       "@/middlewares/*": ["src/middlewares/*"],
+      "@/swagger/*": ["src/swagger/*"],
     }
   },
-  // "include": ["src/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

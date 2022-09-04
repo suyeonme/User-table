@@ -1,0 +1,232 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Simple User CRUD APIs",
+    "contact": {
+      "email": "suyeon.dev@gmail.com"
+    },
+    "description": "Provide CRUD APIs for User",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "host": "localhost:3000",
+  "basePath": "/user",
+  "paths": {
+    "/list": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Get all the users",
+        "description": "Get all the users",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "SUCCESS",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserSuccessResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "FAIL",
+            "schema": {
+              "$ref": "#/definitions/UserFailResponse"
+            }
+          }
+        }
+      }
+    },
+    "/add": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Create an user",
+        "description": "Create an user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SUCCESS",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "FAIL",
+            "schema": {
+              "$ref": "#/definitions/UserFailResponse"
+            }
+          }
+        }
+      }
+    },
+    "/delete": {
+      "delete": {
+        "tags": ["user"],
+        "summary": "Delete an user",
+        "description": "Delete an user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user's ID",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SUCCESS",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserSuccessResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "FAIL",
+            "schema": {
+              "$ref": "#/definitions/UserFailResponse"
+            }
+          }
+        }
+      }
+    },
+    "/update": {
+      "put": {
+        "tags": ["user"],
+        "summary": "Update an user",
+        "description": "Update an user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SUCCESS",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "FAIL",
+            "schema": {
+              "$ref": "#/definitions/UserFailResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "id": {
+          "type": "number"
+        }
+      }
+    },
+    "UserSuccessResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "company": {
+              "type": "string"
+            },
+            "position": {
+              "type": "string"
+            },
+            "id": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "UserFailResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "error": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
