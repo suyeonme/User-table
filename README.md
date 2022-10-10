@@ -1,5 +1,6 @@
 # User-table
-> Simple APIs for CRUD of user table. I focus on to understand the overall flow of Server side.
+> Simple CRUD APIs for user table. I focus on understanding workflow of server side.
+
  ## Getting started
  ### 1. Clone repository
 ```git clone https://github.com/suyeonme/User-table.git```
