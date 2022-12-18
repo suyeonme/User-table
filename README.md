@@ -1,5 +1,5 @@
 # User-table
-> Simple CRUD APIs for user table. I focus on understanding workflow of server side.
+> Simple CRUD APIs for user table. I focus on understanding node.js
 
  ## Getting started
  ### 1. Clone repository
